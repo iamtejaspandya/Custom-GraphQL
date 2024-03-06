@@ -1,0 +1,91 @@
+type Data {
+    id: ID!
+    first_name: String!
+    last_name: String!
+    gender: String!
+    email: String!
+    adress1: String!
+    adress2: String!
+    city: String!
+    state: String!
+    zip_code: Int!
+    feedback: String
+    created_at: String!
+    update_time: String! 
+}
+
+type Query {
+    getDataById(id: ID!): Data @resolver(class: "Tejas\\Graphql\\Model\\Resolver\\GetDataById") @doc(description: "Get custom form data by ID.")
+}
+
+type Mutation {
+
+    createData(
+        input: CreateDataInput!
+        @doc(description: "An input object that contains changes related to the posts.")
+    ): CreateDataOutput
+        @resolver(class: "Tejas\\Graphql\\Model\\Resolver\\CreateData")
+        @doc(description: "Create custom form data.")
+
+    updateData(
+        input: UpdateDataInput!
+        @doc(description: "An input object that contains changes related to the posts.")
+    ): UpdateDataOutput 
+        @resolver(class: "Tejas\\Graphql\\Model\\Resolver\\UpdateData")
+        @doc(description: "Update custom form data.")
+}
+
+input CreateDataInput @doc(description: "Contains details about the posts.") {
+    first_name: String!
+    last_name: String!
+    gender: String!
+    email: String!
+    adress1: String
+    adress2: String
+    city: String!
+    state: String!
+    zip_code: Int
+    feedback: String
+}
+
+type CreateDataOutput {
+    id: ID!
+    first_name: String!
+    last_name: String!
+    gender: String!
+    email: String!
+    adress1: String
+    adress2: String
+    city: String!
+    state: String!
+    zip_code: Int
+    feedback: String
+}
+
+input UpdateDataInput {
+  id: ID!
+  first_name: String
+  last_name: String
+  gender: String
+  email: String
+  adress1: String
+  adress2: String
+  city: String
+  state: String
+  zip_code: Int
+  feedback: String
+}
+
+type UpdateDataOutput {
+  id: ID!
+  first_name: String
+  last_name: String
+  gender: String
+  email: String
+  adress1: String
+  adress2: String
+  city: String
+  state: String
+  zip_code: Int
+  feedback: String
+}
